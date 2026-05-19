@@ -15,6 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
   /* PhonePe Purple Palette */
@@ -38,7 +39,7 @@ html{font-size:15px;-webkit-font-smoothing:antialiased}
 body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh}
 ::-webkit-scrollbar{width:3px;height:3px}
 ::-webkit-scrollbar-thumb{background:var(--GB);border-radius:99px}
-
+ 
 /* CALCULATOR */
 #calcScreen{position:fixed;inset:0;display:flex;flex-direction:column;background:#000;z-index:10}
 .calc-display{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 24px 16px;text-align:right}
@@ -56,7 +57,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .ck.eq{background:#ff9f0a;font-size:clamp(20px,4vw,32px)}
 .ck:nth-child(4n){border-right:none}
 .ck:nth-last-child(-n+4){border-bottom:none}
-
+ 
 /* PIN — FULL SCREEN (PhonePe style) */
 @keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadein{from{opacity:0}to{opacity:1}}
@@ -129,7 +130,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .pk-sub{font-size:8px;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.5px;text-transform:uppercase}
 .pin-err{color:#fca5a5;font-size:12px;font-weight:600;margin-top:14px;min-height:18px;text-align:center}
 .pin-shake{animation:shake .35s ease}
-
+ 
 /* APP SHELL */
 #app{display:none;min-height:100vh}
 .hdr{background:linear-gradient(135deg,var(--G) 0%,var(--G2) 100%);height:60px;padding:0 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;box-shadow:0 4px 16px rgba(95,37,159,.3)}
@@ -146,9 +147,9 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .rp-staff{background:rgba(255,255,255,.2);color:#fff}
 .hdr-out{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:6px 12px;color:#fff;cursor:pointer;font-size:12px;font-weight:600;font-family:var(--f);transition:.15s}
 .hdr-out:hover{background:rgba(255,255,255,.25)}
-
+ 
 .wrap{max-width:1040px;margin:0 auto;padding:20px 16px;display:flex;flex-direction:column;gap:16px}
-
+ 
 /* BOWSER BAR */
 .bowser-bar{background:var(--white);border-radius:var(--r);padding:16px 20px;display:flex;align-items:center;gap:16px;box-shadow:var(--sh);border:none}
 .bb-fuel{font-size:26px;flex-shrink:0}
@@ -160,25 +161,25 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .bb-v{font-family:var(--m);font-size:22px;font-weight:600;color:var(--txt)}
 .bb-u{font-size:12px;color:var(--t3);font-weight:500}
 .bb-pct{font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;flex-shrink:0}
-
+ 
 /* CARDS */
 .card{background:var(--white);border:none;border-radius:var(--r);box-shadow:var(--sh)}
 .cp{padding:20px}
-
+ 
 /* TABS */
 .tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:20px}
 .tab-btn{padding:10px 18px;border:none;background:none;font-family:var(--f);font-size:13px;font-weight:600;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:.15s;border-radius:8px 8px 0 0}
 .tab-btn:hover{color:var(--t2);background:var(--GL)}
 .tab-btn.on{color:var(--G);border-bottom-color:var(--G);background:var(--GL);font-weight:700}
 .tab-pane{display:none}.tab-pane.on{display:block}
-
+ 
 /* STAFF TABS — PhonePe pill-style */
 .stabs{display:flex;gap:0;margin-bottom:20px;background:var(--bg);border-radius:14px;padding:4px}
 .stab{flex:1;padding:10px;border:none;border-radius:11px;background:transparent;font-family:var(--f);font-size:13px;font-weight:600;color:var(--t3);cursor:pointer;text-align:center;transition:.2s}
 .stab:hover{color:var(--G)}
 .stab.on{background:var(--white);color:var(--G);font-weight:700;box-shadow:0 2px 10px rgba(95,37,159,.15)}
 .spane{display:none}.spane.on{display:block}
-
+ 
 /* FORMS */
 .fg{display:flex;flex-direction:column;gap:6px}
 .fg label{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.4px;text-transform:uppercase}
@@ -189,18 +190,18 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .ft{resize:vertical;min-height:68px;font-size:14px;line-height:1.55}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .fgrid.one{grid-template-columns:1fr}
-
+ 
 /* TYPE TOGGLE — PhonePe pill toggle */
 .type-tog{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--bg);border-radius:14px;padding:4px}
 .tt-btn{padding:12px 10px;border:none;border-radius:11px;background:transparent;font-family:var(--f);font-size:13px;font-weight:600;color:var(--t3);cursor:pointer;transition:.2s;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
 .tt-btn:hover{color:var(--G)}
 .tt-btn.on{background:linear-gradient(135deg,var(--G),var(--G2));color:#fff;font-weight:700;box-shadow:0 4px 14px rgba(95,37,159,.3)}
-
+ 
 /* PRIMARY BUTTON — PhonePe CTA style */
 .btn-submit{width:100%;padding:16px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--G),var(--G2));color:#fff;font-family:var(--f);font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(95,37,159,.35);transition:all .15s;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.2px}
 .btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(95,37,159,.4)}
 .btn-submit:active{transform:translateY(0)}
-
+ 
 /* ENTRY CARDS */
 .e-list{display:flex;flex-direction:column;gap:8px}
 .ecard{background:var(--white);border:none;border-radius:var(--r);padding:12px 14px 12px 18px;display:flex;align-items:center;gap:10px;box-shadow:var(--sh);transition:box-shadow .15s,transform .15s;position:relative;overflow:hidden}
@@ -220,12 +221,12 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .ecard-time{font-family:var(--m);font-size:10px;color:var(--t4)}
 .ecard-avg{display:inline-flex;align-items:center;gap:3px;margin-top:4px}
 .tag-note{color:var(--t2);font-size:11px;font-weight:500;margin-top:3px;display:flex;align-items:flex-start;gap:3px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
+ 
 /* ENTRY FILTER ROW */
 .efilter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
 .efilter select,.efilter input{border:none;border-radius:10px;padding:8px 11px;font-family:var(--f);font-size:12px;font-weight:500;color:var(--txt);background:var(--bg);outline:none;transition:box-shadow .15s}
 .efilter select:focus,.efilter input:focus{box-shadow:0 0 0 2px var(--G)}
-
+ 
 /* STAFF ENTRIES TABLE */
 .staff-tbl-wrap{overflow-x:auto;border-radius:14px;background:var(--white);box-shadow:var(--sh)}
 .staff-tbl{width:100%;border-collapse:collapse;font-size:13px;font-family:var(--f)}
@@ -248,11 +249,11 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .str-avg-u{font-size:9px;color:var(--GD);font-weight:700;margin-left:1px}
 .str-time{font-family:var(--m);font-size:10px;color:var(--t4);white-space:nowrap}
 .str-note{font-size:11px;color:var(--t3);font-style:italic;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-
+ 
 /* MICRO TAGS */
 .tag{display:inline-flex;align-items:center;gap:2px;padding:1px 6px;border-radius:99px;font-size:8px;font-weight:800;letter-spacing:.4px;white-space:nowrap;text-transform:uppercase}
 .tag-edited{background:var(--AL);color:#c2410c;border:1px solid var(--AB)}
-
+ 
 /* AVERAGE BADGE */
 .avg-badge{display:inline-flex;align-items:center;gap:4px;background:var(--GL);border-radius:99px;padding:2px 8px 2px 5px;margin-top:6px}
 .avg-icon{font-size:11px}
@@ -261,13 +262,13 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .avg-val{font-family:var(--m);font-size:12px;font-weight:700;color:var(--G)}
 .avg-val span{font-size:9px;color:var(--GD);margin-left:1px;font-family:var(--f);font-weight:700}
 .avg-km{font-size:9px;color:var(--t4);margin-left:4px}
-
+ 
 /* EMPTY STATE */
 .empty-state{text-align:center;padding:48px 20px;color:var(--t3)}
 .empty-state .ei{font-size:38px;margin-bottom:12px;opacity:.5}
 .empty-state .et{font-size:14px;font-weight:700;color:var(--t2);margin-bottom:5px}
 .empty-state .es{font-size:12px;line-height:1.6;font-weight:500}
-
+ 
 /* OWNER STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .stat-card{background:var(--white);border:none;border-radius:var(--r);padding:14px 14px 12px;box-shadow:var(--sh);position:relative;overflow:hidden;transition:box-shadow .15s}
@@ -282,7 +283,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .stat-val{font-family:var(--m);font-size:22px;font-weight:700;color:var(--txt);line-height:1}
 .stat-unit{font-size:10px;color:var(--t3);margin-left:2px}
 .stat-sub{font-size:10px;color:var(--t4);margin-top:3px;font-weight:600}
-
+ 
 /* GAUGE */
 .gauge-wrap{display:flex;flex-direction:column;align-items:center;padding:4px 0 2px}
 .gauge-num{font-family:var(--m);font-size:22px;font-weight:700;color:var(--txt);text-align:center;margin-top:-4px;line-height:1}
@@ -291,13 +292,13 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .btn-refill{margin-top:12px;padding:9px 18px;border:none;border-radius:12px;background:var(--GL);color:var(--G);font-family:var(--f);font-size:12px;font-weight:700;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:5px;box-shadow:0 2px 8px rgba(95,37,159,.12)}
 .btn-refill:hover{background:var(--GB);box-shadow:0 4px 12px rgba(95,37,159,.2)}
 .owner-top{display:grid;grid-template-columns:180px 1fr;gap:12px;align-items:start}
-
+ 
 /* WARN */
 .warn-banner{background:var(--AL);border:none;border-left:4px solid var(--A);border-radius:var(--r);padding:12px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(--sh)}
 .wb-icon{font-size:18px}
 .wb-text{font-size:13px;font-weight:600;color:#9a3412;line-height:1.4}
 .wb-val{font-family:var(--m);font-weight:800;color:var(--R)}
-
+ 
 /* OWNER LOG CARDS */
 .olog{display:flex;flex-direction:column;gap:12px}
 .ocard{background:var(--white);border:none;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:box-shadow .15s}
@@ -313,14 +314,14 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .edit-trail{margin:0 14px 12px;padding:9px 12px;background:var(--AL);border-left:3px solid var(--A);border-radius:10px;font-size:11px;color:#9a3412;display:flex;align-items:flex-start;gap:7px;line-height:1.55;font-weight:500}
 .edit-trail-icon{font-size:12px;flex-shrink:0;margin-top:1px}
 .edit-trail-body{flex:1}
-
+ 
 /* FILTER ROW */
 .flt{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
 .flt input,.flt select{border:none;border-radius:10px;padding:9px 12px;font-family:var(--f);font-size:13px;font-weight:500;color:var(--txt);background:var(--bg);outline:none;transition:box-shadow .15s}
 .flt input:focus,.flt select:focus{box-shadow:0 0 0 2.5px var(--G)}
 .btn-xl{margin-left:auto;padding:9px 18px;border:none;border-radius:11px;background:linear-gradient(135deg,var(--G),var(--G2));color:#fff;font-family:var(--f);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;box-shadow:0 4px 12px rgba(95,37,159,.3);transition:.15s;letter-spacing:.1px}
 .btn-xl:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(95,37,159,.35)}
-
+ 
 /* SETTINGS SECTION CARDS */
 .set-sec{margin-bottom:0}
 .set-row{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
@@ -347,7 +348,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .sch-staff .set-card-hd{background:linear-gradient(90deg,#f5f3ff,#ede9fe)}
 .sch-staff .set-card-hd-icon{background:#ede9fe;color:#7c3aed}
 .set-add-form{background:var(--bg);border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px dashed var(--border2)}
-
+ 
 /* ITEMS */
 .item-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .item-row{display:flex;align-items:center;gap:9px;background:var(--bg);border:none;border-radius:12px;padding:10px 13px;transition:.15s}
@@ -360,12 +361,12 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .item-del{background:none;border:none;border-radius:8px;padding:4px 10px;color:var(--R);font-size:11px;font-weight:700;cursor:pointer;font-family:var(--f);transition:.15s;background:var(--RL)}
 .item-del:hover{background:#ffd5d5}
 .pin-disp{font-family:var(--m);font-size:12px;letter-spacing:3px;color:var(--t3);background:var(--bg);border:none;border-radius:8px;padding:4px 10px}
-
+ 
 /* READING BOX */
 .reading-box{background:var(--GL);border-radius:12px;padding:11px 13px;margin-bottom:14px;border:none}
 .reading-hd{font-size:10px;font-weight:700;color:var(--GD);letter-spacing:.6px;text-transform:uppercase;margin-bottom:9px;display:flex;align-items:center;justify-content:space-between}
 .reading-last{font-size:9px;color:var(--GD);font-weight:800;background:var(--white);padding:2px 8px;border-radius:99px;box-shadow:0 1px 4px rgba(95,37,159,.1)}
-
+ 
 /* MODAL */
 .modal-ov{position:fixed;inset:0;background:rgba(26,5,51,.5);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 .modal-box{background:var(--white);border-radius:20px;padding:28px;width:440px;max-width:95vw;box-shadow:var(--shl);animation:up .22s ease;max-height:92vh;overflow-y:auto}
@@ -375,15 +376,15 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .mok:hover{transform:translateY(-1px)}
 .mcancel{flex:1;padding:13px;background:var(--bg);border:none;border-radius:13px;color:var(--t2);font-family:var(--f);font-size:14px;font-weight:600;cursor:pointer;transition:.15s}
 .mcancel:hover{background:var(--border)}
-
+ 
 /* TOAST */
 #toast{position:fixed;bottom:22px;right:22px;padding:11px 18px;border-radius:14px;font-size:13px;font-weight:700;box-shadow:var(--shl);z-index:999;opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none;max-width:280px;display:flex;align-items:center;gap:7px;letter-spacing:.1px}
 #toast.show{opacity:1;transform:translateY(0)}
 #toast.ok{background:linear-gradient(135deg,var(--G),var(--G2));color:#fff}
 #toast.err{background:var(--R);color:#fff}
-
+ 
 .div{height:1px;background:var(--border);margin:14px 0}
-
+ 
 @media(max-width:680px){
   .fgrid{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:1fr 1fr;gap:8px}
@@ -395,7 +396,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
   .stat-card{padding:10px 12px 9px}
 }
 @media(max-width:420px){.stats-grid{grid-template-columns:1fr 1fr}}
-
+ 
 /* ══ ADMIN PORTAL ══ */
 #adminScreen{position:fixed;inset:0;display:none;flex-direction:column;background:linear-gradient(160deg,#0a0a0a 0%,#111827 60%,#1f2937 100%);z-index:110;overflow-y:auto}
 #adminScreen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,.15) 0%,transparent 60%);pointer-events:none}
@@ -407,7 +408,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .adm-sub{font-size:11px;color:#6b7280;font-weight:500}
 .adm-badge{margin-left:auto;font-size:9px;font-weight:800;padding:3px 9px;border-radius:99px;letter-spacing:.6px;text-transform:uppercase;background:rgba(220,38,38,.2);color:#f87171;border:1px solid rgba(220,38,38,.3)}
 .adm-body{padding:0 22px 32px;display:flex;flex-direction:column;gap:14px;position:relative;z-index:1}
-
+ 
 /* Status card */
 .adm-status-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px;display:flex;align-items:center;gap:16px}
 .adm-status-icon{font-size:36px;flex-shrink:0}
@@ -426,37 +427,44 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .adm-toggle-thumb{position:absolute;top:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 2px 6px rgba(0,0,0,.3)}
 .adm-toggle input:checked ~ .adm-toggle-track .adm-toggle-thumb{left:30px}
 .adm-toggle input:not(:checked) ~ .adm-toggle-track .adm-toggle-thumb{left:3px}
-
+ 
 /* Message card */
 .adm-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px 18px}
 .adm-card-title{font-size:11px;font-weight:700;color:#6b7280;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .adm-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 13px;color:#fff;font-family:var(--f);font-size:13px;font-weight:500;outline:none;transition:.15s}
 .adm-input:focus{border-color:rgba(220,38,38,.5);background:rgba(255,255,255,.08)}
 .adm-input::placeholder{color:#4b5563}
-
+ 
 /* Stats row */
 .adm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .adm-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 14px;text-align:center}
 .adm-stat-val{font-family:var(--m);font-size:22px;font-weight:700;color:#fff;line-height:1;margin-bottom:4px}
 .adm-stat-lbl{font-size:10px;font-weight:600;color:#6b7280;letter-spacing:.4px;text-transform:uppercase}
-
+ 
 /* Disabled overlay when app is OFF */
 #disabledOverlay{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#1a0000,#2d0404);z-index:105;text-align:center;padding:32px}
 .dis-icon{font-size:56px;margin-bottom:18px}
 .dis-title{font-size:24px;font-weight:800;color:#f87171;margin-bottom:8px;letter-spacing:-.4px}
 .dis-msg{font-size:14px;color:#9ca3af;line-height:1.6;font-weight:500;max-width:280px}
 .dis-note{font-size:11px;color:#4b5563;margin-top:20px;font-weight:500}
-
+ 
 /* ACCORDION */
 .set-acc-hd{cursor:pointer;user-select:none;transition:background .15s}
 .set-acc-hd:hover{filter:brightness(.97)}
 .acc-arrow{font-size:18px;color:var(--t3);font-weight:300;transition:transform .25s;flex-shrink:0;line-height:1;margin-left:4px}
 .acc-arrow.open{transform:rotate(90deg);color:var(--G)}
 .acc-body{overflow:hidden;transition:all .25s ease}
+ 
+/* SYNC STATUS BADGE */
+#syncBadge{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.3px;transition:all .3s;border:1px solid transparent}
+#syncBadge.synced{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2)}
+#syncBadge.syncing{background:rgba(255,200,0,.2);color:#ffd700;border-color:rgba(255,200,0,.3);animation:syncPulse 1s ease-in-out infinite}
+#syncBadge.offline{background:rgba(220,38,38,.2);color:#fca5a5;border-color:rgba(220,38,38,.3)}
+@keyframes syncPulse{0%,100%{opacity:1}50%{opacity:.5}}
 </style>
 </head>
 <body>
-
+ 
 <!-- PWA INSTALL BANNER -->
 <div id="installBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#5f259f,#8b5cf6);padding:14px 18px;z-index:9999;align-items:center;gap:12px;box-shadow:0 -4px 20px rgba(95,37,159,.4)">
   <div style="font-size:26px">⛽</div>
@@ -467,7 +475,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
   <button onclick="installApp()" style="background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.4);border-radius:10px;padding:8px 16px;color:#fff;font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;cursor:pointer;backdrop-filter:blur(4px)">Install</button>
   <button onclick="document.getElementById('installBanner').style.display='none'" style="background:none;border:none;color:rgba(255,255,255,.6);font-size:20px;cursor:pointer;padding:4px;line-height:1">✕</button>
 </div>
-
+ 
 <!-- LOADING OVERLAY -->
 <div id="loadingOverlay" style="position:fixed;inset:0;background:linear-gradient(160deg,#1a0533,#3b0764,#5f259f);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
   <div style="font-size:56px">⛽</div>
@@ -476,7 +484,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
   <div style="width:48px;height:48px;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;margin-top:8px"></div>
 </div>
 <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
-
+ 
 <!-- ══════ CALCULATOR ══════ -->
 <div id="calcScreen">
   <div class="calc-display">
@@ -506,12 +514,12 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
     <button class="ck eq" onclick="cEqual()">=</button>
   </div>
 </div>
-
+ 
 <!-- ══════ PIN FULL SCREEN ══════ -->
 <div id="loginScreen">
   <!-- Back to calculator -->
   <button class="pin-close" id="pinBackBtn" onclick="closePinOverlay()">←</button>
-
+ 
   <!-- Brand + dots -->
   <div class="pin-card" id="pinCard">
     <div class="pin-top">
@@ -527,7 +535,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
       </div>
       <div class="pin-err" id="pinErr"></div>
     </div>
-
+ 
     <!-- Keypad pinned to bottom -->
     <div class="pin-bottom">
       <div class="pin-pad">
@@ -547,7 +555,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
     </div>
   </div>
 </div>
-
+ 
 <!-- ══════ APP ══════ -->
 <div id="app">
   <header class="hdr">
@@ -561,14 +569,15 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
         <div class="hdr-uname" id="hdrUname">-</div>
         <span class="role-pill" id="hdrRole">-</span>
       </div>
+      <div id="syncBadge" class="synced">🟢 Synced</div>
       <button class="hdr-out" onclick="doLogout()">↩ Logout</button>
     </div>
   </header>
-
+ 
   <!-- ════ STAFF VIEW ════ -->
   <div id="staffView" style="display:none">
     <div class="wrap">
-
+ 
       <!-- Bowser Bar -->
       <div class="bowser-bar" id="staffBb">
         <div class="bb-fuel">🛢️</div>
@@ -582,17 +591,17 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
         </div>
         <div class="bb-pct" id="bbPct">0%</div>
       </div>
-
+ 
       <!-- Staff Tabs -->
       <div class="card cp">
         <div class="stabs">
           <button class="stab on" id="stab-issue" onclick="switchStab('issue',this)">⛽ Issue Diesel</button>
           <button class="stab" id="stab-entries" onclick="switchStab('entries',this)">📋 My Entries</button>
         </div>
-
+ 
         <!-- ISSUE PANE -->
         <div class="spane on" id="spane-issue">
-
+ 
           <!-- Type Toggle -->
           <div class="fg" style="margin-bottom:16px">
             <label>Issue To</label>
@@ -601,7 +610,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
               <button class="tt-btn" id="ttM" onclick="setType('machine')">🏗️ Machine</button>
             </div>
           </div>
-
+ 
           <div class="fgrid" style="margin-bottom:14px">
             <div class="fg">
               <label id="recipLbl">Select Vehicle</label>
@@ -615,13 +624,13 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
               <input class="fi" id="fQty" type="number" min="1" placeholder="e.g. 150">
             </div>
           </div>
-
+ 
           <!-- Vehicle work -->
           <div id="secVeh" class="fgrid" style="margin-bottom:14px">
             <div class="fg"><label>From</label><input class="fi" id="fFrom" placeholder="e.g. Andhra Pradesh"></div>
             <div class="fg"><label>To</label><input class="fi" id="fTo" placeholder="e.g. Hyderabad"></div>
           </div>
-
+ 
           <!-- Vehicle KM reading -->
           <div id="secVehKm" class="reading-box" style="margin-bottom:14px">
             <div class="reading-hd">
@@ -633,7 +642,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
               <input class="fi" id="fKmReading" type="number" min="0" placeholder="e.g. 45230">
             </div>
           </div>
-
+ 
           <!-- Machine work -->
           <div id="secMac" style="display:none;margin-bottom:14px">
             <div class="fgrid" style="margin-bottom:14px">
@@ -669,15 +678,15 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
               </div>
             </div>
           </div>
-
+ 
           <div class="fg" style="margin-bottom:4px">
             <label>Notes (Optional)</label>
             <textarea class="ft fi" id="fNotes" placeholder="Driver name, remarks..."></textarea>
           </div>
-
+ 
           <button class="btn-submit" onclick="submitEntry()">⛽ Issue Diesel</button>
         </div>
-
+ 
         <!-- ENTRIES PANE -->
         <div class="spane" id="spane-entries">
           <!-- Filter row -->
@@ -700,17 +709,17 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
       </div>
     </div>
   </div>
-
+ 
   <!-- ════ OWNER VIEW ════ -->
   <div id="ownerView" style="display:none">
     <div class="wrap">
-
+ 
       <!-- Warning -->
       <div id="warnBanner" class="warn-banner" style="display:none">
         <div class="wb-icon">⚠️</div>
         <div class="wb-text">Low Diesel Alert — Only <span class="wb-val" id="warnVal">0</span> L remaining in bowser!</div>
       </div>
-
+ 
       <!-- Top row: gauge + stats -->
       <div class="owner-top">
         <div class="card" style="padding:14px 16px">
@@ -729,16 +738,16 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
                   <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="rgba(0,0,0,.25)"/>
                 </filter>
               </defs>
-
+ 
               <!-- Outer dial background arc -->
               <path d="M18 108 A82 82 0 0 1 182 108" fill="none" stroke="#e8ecf0" stroke-width="18" stroke-linecap="round"/>
-
+ 
               <!-- Danger zone red arc (left 20%) -->
               <path d="M18 108 A82 82 0 0 1 51 41" fill="none" stroke="#fecaca" stroke-width="18" stroke-linecap="round"/>
-
+ 
               <!-- Main fill arc -->
               <path id="gArc" d="M18 108 A82 82 0 0 1 182 108" fill="none" stroke="url(#gg)" stroke-width="18" stroke-linecap="round" stroke-dasharray="257" stroke-dashoffset="0"/>
-
+ 
               <!-- Tick marks -->
               <g stroke="#cbd5e1" stroke-width="1.5">
                 <!-- 0% (left) -->
@@ -752,14 +761,14 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
                 <!-- 100% (right) -->
                 <line x1="18" y1="108" x2="26" y2="104" transform="rotate(180,100,108)"/>
               </g>
-
+ 
               <!-- E label -->
               <text x="14" y="125" text-anchor="middle" fill="#ef4444" font-size="11" font-family="Inter,sans-serif" font-weight="800">E</text>
               <!-- F label -->
               <text x="186" y="125" text-anchor="middle" fill="#0891b2" font-size="11" font-family="Inter,sans-serif" font-weight="800">F</text>
               <!-- 1/2 label -->
               <text x="100" y="22" text-anchor="middle" fill="#9ca3af" font-size="8" font-family="Inter,sans-serif" font-weight="600">½</text>
-
+ 
               <!-- Needle group — rotates around center (100,108) -->
               <g id="gNeedle" transform="rotate(-90 100 108)" style="transition:transform .9s cubic-bezier(.34,1.56,.64,1)">
                 <!-- Needle shaft -->
@@ -767,11 +776,11 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
                 <!-- Needle tip highlight -->
                 <line x1="100" y1="108" x2="100" y2="50" stroke="#334155" stroke-width="1.5" stroke-linecap="round"/>
               </g>
-
+ 
               <!-- Center hub -->
               <circle cx="100" cy="108" r="7" fill="#1e293b" stroke="#fff" stroke-width="2"/>
               <circle cx="100" cy="108" r="3" fill="#64748b"/>
-
+ 
               <!-- Fuel pump icon (top center) -->
               <text x="100" y="75" text-anchor="middle" font-size="14" fill="#9ca3af">⛽</text>
             </svg>
@@ -783,7 +792,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
             <button class="btn-refill" onclick="openRefill()">🔃 Refill</button>
           </div>
         </div>
-
+ 
         <div class="stats-grid">
           <div class="stat-card sc-g">
             <div class="stat-ico">🛢️</div>
@@ -809,14 +818,14 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
           </div>
         </div>
       </div>
-
+ 
       <!-- Owner Tabs -->
       <div class="card cp">
         <div class="tabs">
           <button class="tab-btn on" onclick="switchTab('tLog',this)">📋 Diesel Log</button>
           <button class="tab-btn" onclick="switchTab('tSettings',this)">⚙️ Settings</button>
         </div>
-
+ 
         <!-- LOG TAB -->
         <div class="tab-pane on" id="tLog">
           <div class="flt">
@@ -836,10 +845,10 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
             <div class="empty-state"><div class="ei">📋</div><div class="et">No entries yet</div></div>
           </div>
         </div>
-
+ 
         <!-- SETTINGS TAB -->
         <div class="tab-pane" id="tSettings">
-
+ 
           <!-- 1. Staff Login Mode -->
           <div class="set-card sch-cyan" style="margin-bottom:10px">
             <div class="set-card-hd set-acc-hd" onclick="toggleAcc('acc1')">
@@ -867,7 +876,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
               </div>
             </div>
           </div>
-
+ 
           <!-- 2. Change PIN + Bowser Capacity -->
           <div class="set-card sch-blue" style="margin-bottom:10px">
             <div class="set-card-hd set-acc-hd" onclick="toggleAcc('acc2')">
@@ -896,7 +905,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
               </div>
             </div>
           </div>
-
+ 
           <!-- 3. Vehicles & Machines -->
           <div class="set-card" style="margin-bottom:10px;border:1px solid var(--border)">
             <div class="set-card-hd set-acc-hd" onclick="toggleAcc('acc3')" style="background:linear-gradient(90deg,#f0fdf4,#fff7ed)">
@@ -938,7 +947,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
               </div>
             </div>
           </div>
-
+ 
           <!-- 4. Manage Staff -->
           <div class="set-card sch-staff" style="margin-bottom:10px">
             <div class="set-card-hd set-acc-hd" onclick="toggleAcc('acc4')">
@@ -962,13 +971,13 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
               </div>
             </div>
           </div>
-
+ 
         </div>
       </div>
     </div>
   </div>
 </div>
-
+ 
 <!-- EDIT MODAL -->
 <div class="modal-ov" id="editModal" style="display:none">
   <div class="modal-box">
@@ -1017,7 +1026,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
     </div>
   </div>
 </div>
-
+ 
 <!-- REFILL MODAL -->
 <div class="modal-ov" id="refillModal" style="display:none">
   <div class="modal-box" style="width:340px">
@@ -1030,133 +1039,135 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
     </div>
   </div>
 </div>
-
+ 
 <div id="toast"></div>
-
+ 
 <script>
 // ═══════════════════════════════════
-//  SUPABASE CONFIG
+//  SUPABASE — OFFLINE-FIRST
 // ═══════════════════════════════════
-const SB_URL = 'https://iosamndhsaxusrevehad.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlvc2FtbmRoc2F4dXNyZXZlaGFkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNzE2MjYsImV4cCI6MjA5NDc0NzYyNn0.qtGd_laCpV5XO1KiRhJ67Dj4fTcMBkAGI8WTOVxzrhU';
-const sb = supabase.createClient(SB_URL, SB_KEY);
-
+const SB_URL='https://iosamndhsaxusrevehad.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlvc2FtbmRoc2F4dXNyZXZlaGFkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNzE2MjYsImV4cCI6MjA5NDc0NzYyNn0.qtGd_laCpV5XO1KiRhJ67Dj4fTcMBkAGI8WTOVxzrhU';
+const sb=supabase.createClient(SB_URL,SB_KEY);
+function mapEntry(r){return{id:r.id,ts:r.ts,date:r.date,staff:r.staff,type:r.type,recip:r.recip,qty:r.qty,from:r.from_loc,to:r.to_loc,machineType:r.machine_type,machineWork:r.machine_work,kmReading:r.km_reading,hmrReading:r.hmr_reading,notes:r.notes,editedAt:r.edited_at,editedBy:r.edited_by,editHistory:r.edit_history||[]};}
+function rowEntry(e){return{id:e.id,ts:e.ts,date:e.date,staff:e.staff,type:e.type,recip:e.recip,qty:e.qty,from_loc:e.from||null,to_loc:e.to||null,machine_type:e.machineType||null,machine_work:e.machineWork||null,km_reading:e.kmReading??null,hmr_reading:e.hmrReading??null,notes:e.notes||null,edited_at:e.editedAt||null,edited_by:e.editedBy||null,edit_reason:e.editHistory?.slice(-1)[0]?.reason||null,edit_history:e.editHistory||[]};}
+ 
 // ═══════════════════════════════════
-//  STATE (in-memory cache)
+//  STATE
 // ═══════════════════════════════════
-let S = {
-  bowserCap: 20000, bowserNow: 20000,
-  entries: [], users: [], vehicles: [], machines: [], refills: [],
-  loginMode: 'calc', disabled: false, disableMsg: ''
-};
-let me = null, issueType = 'vehicle';
-
-// Map DB row → JS entry object
-function mapEntry(r){
-  return {
-    id:r.id, ts:r.ts, date:r.date, staff:r.staff, type:r.type,
-    recip:r.recip, qty:r.qty,
-    from:r.from_loc, to:r.to_loc,
-    machineType:r.machine_type, machineWork:r.machine_work,
-    kmReading:r.km_reading, hmrReading:r.hmr_reading,
-    notes:r.notes, editedAt:r.edited_at, editedBy:r.edited_by,
-    editHistory:r.edit_history||[]
-  };
+let S={bowserCap:20000,bowserNow:20000,entries:[],users:[{u:'Owner',pin:'2026',role:'owner'},{u:'Ramesh',pin:'2021',role:'staff'}],vehicles:[],machines:[],refills:[],loginMode:'calc',disabled:false,disableMsg:''};
+let me=null,issueType='vehicle';
+ 
+function updateSyncBadge(){
+  const b=document.getElementById('syncBadge');if(!b)return;
+  if(!navigator.onLine){b.className='synced offline';b.textContent='🔴 Offline';}
+  else if(localStorage.getItem('bdm_dirty')){b.className='synced syncing';b.textContent='🟡 Syncing...';}
+  else{b.className='synced';b.textContent='🟢 Synced';}
 }
-// Map JS entry → DB row
-function rowEntry(e){
-  return {
-    id:e.id, ts:e.ts, date:e.date, staff:e.staff, type:e.type,
-    recip:e.recip, qty:e.qty,
-    from_loc:e.from||null, to_loc:e.to||null,
-    machine_type:e.machineType||null, machine_work:e.machineWork||null,
-    km_reading:e.kmReading??null, hmr_reading:e.hmrReading??null,
-    notes:e.notes||null, edited_at:e.editedAt||null, edited_by:e.editedBy||null,
-    edit_reason:e.editHistory?.slice(-1)[0]?.reason||null,
-    edit_history:e.editHistory||[]
-  };
+ 
+function save(){
+  try{localStorage.setItem('bdm_v3',JSON.stringify(S));}catch(e){}
+  localStorage.setItem('bdm_dirty','1');
+  updateSyncBadge();
+  if(navigator.onLine)bgSync();
 }
-
-// Sync settings row to Supabase
-async function syncSettings(changes){
-  const {error} = await sb.from('bdm_settings').update(changes).eq('id','main');
-  if(error) console.error('Settings sync error:',error);
-}
-
-// Load everything from Supabase on startup
-async function load(){
+ 
+let _syncing=false;
+async function bgSync(){
+  if(_syncing||!navigator.onLine)return;_syncing=true;
+  const b=document.getElementById('syncBadge');
+  if(b){b.className='synced syncing';b.textContent='🟡 Syncing...';}
   try{
-    // Settings
-    const {data:cfg} = await sb.from('bdm_settings').select('*').eq('id','main').single();
-    if(cfg){
+    await sb.from('bdm_settings').upsert({id:'main',bowser_cap:S.bowserCap,bowser_now:S.bowserNow,login_mode:S.loginMode,app_disabled:S.disabled,disable_msg:S.disableMsg});
+    if(S.entries.length){const chs=[];for(let i=0;i<S.entries.length;i+=50)chs.push(S.entries.slice(i,i+50));for(const ch of chs)await sb.from('bdm_entries').upsert(ch.map(rowEntry));}
+    if(S.vehicles.length)await sb.from('bdm_vehicles').upsert(S.vehicles.map(v=>({id:v.id,name:v.name,number:v.number||null})));
+    if(S.machines.length)await sb.from('bdm_machines').upsert(S.machines.map(m=>({id:m.id,name:m.name,type:m.type})));
+    // Sync all users
+    const allUsers=S.users.map(u=>({
+      id:u.dbId||(u.role==='owner'?'owner':u.u.toLowerCase().replace(/[^a-z0-9]/g,'_')+'_'+u.pin),
+      name:u.u, pin:u.pin, role:u.role
+    }));
+    if(allUsers.length) await sb.from('bdm_users').upsert(allUsers);
+    localStorage.removeItem('bdm_dirty');
+    if(b){b.className='synced';b.textContent='🟢 Synced';}
+  }catch(e){console.error('Sync:',e);if(b){b.className='synced offline';b.textContent='🔴 Sync failed';}}
+  finally{_syncing=false;}
+}
+ 
+async function fetchFromSupabase(){
+  if(!navigator.onLine) return;
+  try{
+    // Fetch all tables individually so one failure doesn't kill everything
+    const [{data:cfg,error:e1},{data:users,error:e2},{data:vehs,error:e3},{data:macs,error:e4},{data:ents,error:e5}] = await Promise.all([
+      sb.from('bdm_settings').select('*').eq('id','main').single(),
+      sb.from('bdm_users').select('*'),
+      sb.from('bdm_vehicles').select('*'),
+      sb.from('bdm_machines').select('*'),
+      sb.from('bdm_entries').select('*').order('ts',{ascending:false})
+    ]);
+ 
+    // Settings — only apply if no error
+    if(!e1 && cfg){
       S.bowserCap=cfg.bowser_cap; S.bowserNow=cfg.bowser_now;
       S.loginMode=cfg.login_mode||'calc';
       S.disabled=cfg.app_disabled||false;
       S.disableMsg=cfg.disable_msg||'';
     }
-    // Users
-    const {data:users} = await sb.from('bdm_users').select('*');
-    if(users) S.users=users.map(u=>({u:u.name,pin:u.pin,role:u.role,dbId:u.id}));
-    // Vehicles
-    const {data:vehs} = await sb.from('bdm_vehicles').select('*');
-    if(vehs) S.vehicles=vehs.map(v=>({id:v.id,name:v.name,number:v.number}));
-    // Machines
-    const {data:macs} = await sb.from('bdm_machines').select('*');
-    if(macs) S.machines=macs.map(m=>({id:m.id,name:m.name,type:m.type}));
-    // Entries
-    const {data:ents} = await sb.from('bdm_entries').select('*').order('ts',{ascending:false});
-    if(ents) S.entries=ents.map(mapEntry);
-
-    // Apply login mode
-    if(S.loginMode==='pin'){
-      document.getElementById('calcScreen').style.display='none';
-      openPin();
-      const backBtn=document.getElementById('pinBackBtn');
-      if(backBtn) backBtn.style.display='none';
+ 
+    // Users — MERGE: keep local users not in Supabase (newly added offline)
+    if(!e2 && users){
+      const sbPins=new Set(users.map(u=>u.pin));
+      const sbUsers=users.map(u=>({u:u.name,pin:u.pin,role:u.role,dbId:u.id}));
+      const localOnly=S.users.filter(u=>!sbPins.has(u.pin)); // offline-added users
+      S.users=[...sbUsers,...localOnly];
     }
+ 
+    // Vehicles — replace only if Supabase returned valid data
+    if(!e3 && vehs) S.vehicles=vehs.map(v=>({id:v.id,name:v.name,number:v.number}));
+ 
+    // Machines — replace only if Supabase returned valid data
+    if(!e4 && macs) S.machines=macs.map(m=>({id:m.id,name:m.name,type:m.type}));
+ 
+    // Entries — SAFE MERGE: never delete local entries
+    if(!e5 && ents!==null){
+      const sbIds=new Set(ents.map(e=>e.id));
+      const localOnly=S.entries.filter(e=>!sbIds.has(e.id)); // entries made offline
+      const merged=[...ents.map(mapEntry),...localOnly];
+      // Only update if we're not losing data
+      if(merged.length>=S.entries.length || ents.length>0){
+        S.entries=merged;
+      }
+      // Push any offline entries to Supabase
+      if(localOnly.length>0) localStorage.setItem('bdm_dirty','1');
+    }
+ 
+    // Save merged state to localStorage
+    try{ localStorage.setItem('bdm_v3',JSON.stringify(S)); }catch(e){}
+ 
+    // Push any pending offline changes to Supabase
+    if(localStorage.getItem('bdm_dirty')) bgSync();
+ 
+    // Refresh UI if logged in
+    if(me){ if(me.role==='owner'){renderOwner();renderLog();}else{renderBb();renderStaffEntries();} }
+    updateSyncBadge();
   }catch(e){
-    console.error('Supabase load error:',e);
-    toast('⚠️ Database connection error','err');
-  } finally {
-    document.getElementById('loadingOverlay').style.display='none';
+    console.error('Fetch error:',e);
+    updateSyncBadge();
   }
 }
-
-// ═══════════════════════════════════
-//  CALCULATOR
-// ═══════════════════════════════════
-const SECRET='3578'; const ADMIN_SECRET='2027'; let calcSeq='';
-let cA=null,cOp_=null,cB=null,cDisplay='0',cJustEq=false,cTyping=false;
-
-function cFmt(n){ if(n===null||n===undefined)return'0'; const s=String(n); if(s.includes('.')){ const p=s.split('.'); p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,','); return p.join('.'); } return s.replace(/\B(?=(\d{3})+(?!\d))/g,','); }
-function cUpdateDisplay(){ const el=document.getElementById('cVal'); const raw=cDisplay.replace(/,/g,''); const len=raw.replace('-','').replace('.','').length; el.className='calc-val'+(len>=13?' s13':len>=10?' s10':len>=7?' s7':len>=5?' s5':''); if(raw.includes('.')){ const p=raw.split('.'); p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,','); el.textContent=p.join('.'); }else{ el.textContent=raw.replace(/\B(?=(\d{3})+(?!\d))/g,','); } document.getElementById('btnAC').textContent=(cDisplay!=='0'||cTyping)?'C':'AC'; }
-function cUpdateExpr(){ let x=''; if(cA!==null&&cOp_){ x=cFmt(cA)+' '+cOp_; if(cTyping) x+=' '+cDisplay; } document.getElementById('cExpr').textContent=x; }
-function cNum(d){ calcSeq=(calcSeq+d).slice(-4); if(calcSeq===ADMIN_SECRET){openAdminPortal();return;} if(calcSeq===SECRET){openPin();return;} if(cJustEq){cA=null;cOp_=null;cB=null;cJustEq=false;cDisplay=d==='0'?'0':d;cTyping=true;}else if(!cTyping){cDisplay=d==='0'?'0':d;cTyping=true;}else{if(cDisplay==='0'&&d!=='.')cDisplay=d; else if(cDisplay.replace('-','').replace('.','').length<12)cDisplay+=d;} cUpdateDisplay();cUpdateExpr();if(cOp_)cHighOp(cOp_); }
-function cDot(){ if(cJustEq){cA=null;cOp_=null;cJustEq=false;cDisplay='0.';cTyping=true;}else if(!cTyping){cDisplay='0.';cTyping=true;}else if(!cDisplay.includes('.'))cDisplay+='.'; cUpdateDisplay();cUpdateExpr(); }
-function cOp(op){ if(cA!==null&&cOp_!==null&&cTyping){ const b=parseFloat(cDisplay),res=cCalc(cA,b,cOp_); cA=res;cDisplay=String(parseFloat(res.toFixed(10))); document.getElementById('cHistory').textContent=cFmt(cA)+' '+cOp_+' '+cFmt(b)+' ='; }else if(cA===null||!cTyping){cA=parseFloat(cDisplay);} cOp_=op;cB=null;cTyping=false;cJustEq=false;cUpdateDisplay();cUpdateExpr();cHighOp(op); }
-function cEqual(){ if(cA===null||cOp_===null)return; const b=cTyping?parseFloat(cDisplay):(cB!==null?cB:cA); cB=b; const res=cCalc(cA,b,cOp_); document.getElementById('cHistory').textContent=cFmt(cA)+' '+cOp_+' '+cFmt(b)+' ='; document.getElementById('cExpr').textContent=''; cDisplay=String(parseFloat(res.toFixed(10)));cA=res;cTyping=false;cJustEq=true;cUpdateDisplay();cHighOp(null); }
-function cCalc(a,b,op){ if(op==='+')return a+b;if(op==='−')return a-b;if(op==='×')return a*b;if(op==='÷')return b?a/b:0;return b; }
-function cFunc(f){ if(f==='AC'||f==='C'){if(f==='AC'){cA=null;cOp_=null;cB=null;document.getElementById('cHistory').textContent='';document.getElementById('cExpr').textContent='';} cDisplay='0';cTyping=false;if(f==='AC')calcSeq=''; cUpdateDisplay();cHighOp(null);}if(f==='+/-'&&cDisplay!=='0'){cDisplay=cDisplay.startsWith('-')?cDisplay.slice(1):'-'+cDisplay;cUpdateDisplay();cUpdateExpr();}if(f==='%'){cDisplay=String(parseFloat((parseFloat(cDisplay)/100).toFixed(10)));cUpdateDisplay();cUpdateExpr();} }
-function cBackspace(){ if(!cTyping||cJustEq)return;if(cDisplay.length<=1||(cDisplay.length===2&&cDisplay.startsWith('-'))){cDisplay='0';cTyping=false;}else{cDisplay=cDisplay.slice(0,-1);if(cDisplay==='-')cDisplay='0';}cUpdateDisplay();cUpdateExpr(); }
-function cHighOp(op){ ['opDiv','opMul','opSub','opAdd'].forEach(id=>{document.getElementById(id).classList.remove('hi');}); const m={'÷':'opDiv','×':'opMul','−':'opSub','+':'opAdd'}; if(op&&m[op])document.getElementById(m[op]).classList.add('hi'); }
-
-document.addEventListener('keydown',e=>{ const pinOpen=document.getElementById('loginScreen').style.display!==''&&document.getElementById('loginScreen').style.display!=='none'; if(pinOpen){if(e.key>='0'&&e.key<='9')pinKey(e.key);if(e.key==='Backspace')pinDel();if(e.key==='Escape')closePinOverlay();return;} if(document.getElementById('app').style.display!=='none')return; if(e.key>='0'&&e.key<='9')cNum(e.key);if(e.key==='.')cDot();if(e.key==='Enter'||e.key==='=')cEqual();if(e.key==='Backspace'){e.preventDefault();cBackspace();}if(e.key==='Escape')cFunc('AC');if(e.key==='+')cOp('+');if(e.key==='-')cOp('−');if(e.key==='*')cOp('×');if(e.key==='/'){e.preventDefault();cOp('÷');} });
-
-// ═══════════════════════════════════
-//  PIN AUTH
-// ═══════════════════════════════════
-let pinEntry='';const PIN_LEN=4;
-function openPin(){pinEntry='';renderDots();document.getElementById('pinErr').textContent='';document.getElementById('loginScreen').style.display='flex';}
-function closePinOverlay(){
-  const mode=S.loginMode||'calc';
-  pinEntry='';renderDots();
-  document.getElementById('loginScreen').style.display='none';
-  // Only show calculator if in calc mode
-  if(mode==='calc') document.getElementById('calcScreen').style.display='flex';
+ 
+window.addEventListener('online',async()=>{updateSyncBadge();toast('🌐 Back online — syncing...','ok');await fetchFromSupabase();});
+window.addEventListener('offline',()=>{updateSyncBadge();toast('📴 Offline — saving locally','err');});
+ 
+async function load(){
+  try{const d=localStorage.getItem('bdm_v3');if(d){const p=JSON.parse(d);S={...S,...p};}}catch(e){}
+  if(S.loginMode==='pin'){document.getElementById('calcScreen').style.display='none';openPin();const b=document.getElementById('pinBackBtn');if(b)b.style.display='none';}
+  document.getElementById('loadingOverlay').style.display='none';
+  updateSyncBadge();
+  await fetchFromSupabase();
 }
-function pinKey(d){if(pinEntry.length>=PIN_LEN)return;pinEntry+=d;renderDots();if(pinEntry.length===PIN_LEN)setTimeout(tryLogin,120);}
-function pinDel(){if(!pinEntry.length)return;pinEntry=pinEntry.slice(0,-1);renderDots();document.getElementById('pinErr').textContent='';}
-function renderDots(){for(let i=0;i<PIN_LEN;i++){const d=document.getElementById('d'+i);d.classList.toggle('on',i<pinEntry.length);d.classList.remove('err');}}
+ 
+ 
 function tryLogin(){
   const f=S.users.find(x=>x.pin===pinEntry);
   if(!f){
@@ -1186,26 +1197,26 @@ function tryLogin(){
   f.role==='owner'?showOwner():showStaff();
 }
 function doLogout(){me=null;calcSeq='';pinEntry='';renderDots();document.getElementById('pinErr').textContent='';document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='none';document.getElementById('calcScreen').style.display='flex';document.getElementById('staffView').style.display='none';document.getElementById('ownerView').style.display='none'; cA=null;cOp_=null;cB=null;cDisplay='0';cJustEq=false;cTyping=false;document.getElementById('cHistory').textContent='';document.getElementById('cExpr').textContent='';cUpdateDisplay();cHighOp(null); }
-
+ 
 // ═══════════════════════════════════
 //  VIEWS
 // ═══════════════════════════════════
 function showStaff(){document.getElementById('staffView').style.display='block';document.getElementById('ownerView').style.display='none';document.getElementById('hdrPage').textContent='Issue Diesel';populateDrop();renderBb();renderStaffEntries();}
 function showOwner(){document.getElementById('ownerView').style.display='block';document.getElementById('staffView').style.display='none';document.getElementById('hdrPage').textContent='Dashboard';renderOwner();renderLog();loadSettings();}
-
+ 
 function switchStab(name,btn){ document.querySelectorAll('.stab').forEach(b=>b.classList.remove('on'));document.querySelectorAll('.spane').forEach(p=>p.classList.remove('on'));btn.classList.add('on');document.getElementById('spane-'+name).classList.add('on');if(name==='entries')renderStaffEntries(); }
 function switchTab(id,btn){ document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('on'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('on'));btn.classList.add('on');document.getElementById(id).classList.add('on');if(id==='tSettings')loadSettings(); }
-
+ 
 // ── Bowser bar ──
 function renderBb(){const pct=pctOf(); document.getElementById('bbVal').textContent=S.bowserNow.toLocaleString('en-IN');const fill=document.getElementById('bbFill');fill.style.width=pct+'%';const color=pct>30?'linear-gradient(90deg,#5f259f,#8b5cf6)':pct>15?'linear-gradient(90deg,var(--A),#fbbf24)':'linear-gradient(90deg,var(--R),#f87171)';fill.style.background=color;const pctEl=document.getElementById('bbPct');pctEl.textContent=pct.toFixed(1)+'%';pctEl.style.background=pct>30?'var(--GL)':pct>15?'var(--AL)':'var(--RL)';pctEl.style.color=pct>30?'var(--G)':pct>15?'var(--A)':'var(--R)';}
-
+ 
 // ── Owner dashboard ──
 function renderOwner(){
   const issued=S.entries.reduce((s,e)=>s+e.qty,0);
   const today=S.entries.filter(e=>e.date===todayStr()).length;
   const edited=S.entries.filter(e=>e.editedAt).length;
   const pct=pctOf();
-
+ 
   document.getElementById('stAvail').textContent=S.bowserNow.toLocaleString('en-IN');
   document.getElementById('stIssued').textContent=issued.toLocaleString('en-IN');
   document.getElementById('stEntries').textContent=S.entries.length;
@@ -1214,25 +1225,25 @@ function renderOwner(){
   document.getElementById('gNum').textContent=S.bowserNow.toLocaleString('en-IN')+' L';
   document.getElementById('gPct').textContent=pct.toFixed(1)+'%';
   document.getElementById('gOf').textContent='of '+S.bowserCap.toLocaleString('en-IN')+' L';
-
+ 
   // Arc fill: full arc = 257 dasharray, offset = 257*(1-pct/100)
   const arc=document.getElementById('gArc');
   const totalArc=257;
   const offset=totalArc*(1-pct/100);
   arc.setAttribute('stroke-dashoffset', offset);
   arc.setAttribute('stroke', pct>25?'url(#gg)':pct>12?'#d97706':'url(#gRed)');
-
+ 
   // Needle: -90° = empty (left), +90° = full (right)
   // So needle angle = -90 + (pct/100)*180
   const needleAngle = -90 + (pct/100)*180;
   const needle=document.getElementById('gNeedle');
   if(needle) needle.setAttribute('transform',`rotate(${needleAngle} 100 108)`);
-
+ 
   const wb=document.getElementById('warnBanner');
   wb.style.display=S.bowserNow<=5000?'flex':'none';
   if(S.bowserNow<=5000)document.getElementById('warnVal').textContent=S.bowserNow.toLocaleString('en-IN');
 }
-
+ 
 // ─── Average calculation helpers ───
 function getLastEntry(recip, type){
   return S.entries
@@ -1261,13 +1272,13 @@ function calcAvg(entry){
     return{value:avg.toFixed(2),unit:'L/hr',label:'Fuel Rate',detail:`${h0} → ${h1} hrs (${hmrDiff.toFixed(1)} hrs, ${entry.qty}L)`,icon:'⏱️'};
   }
 }
-
+ 
 function renderStaffEntries(){
   const f    = document.getElementById('eFilter')?.value || 'today';
   const fd   = document.getElementById('eDateFilter')?.value || '';
   const fv   = document.getElementById('eVehFilter')?.value || '';
   const today = todayStr();
-
+ 
   // Populate vehicle filter dropdown from this staff's entries
   const vSel = document.getElementById('eVehFilter');
   if(vSel){
@@ -1275,23 +1286,23 @@ function renderStaffEntries(){
     const cur=vSel.value;
     vSel.innerHTML='<option value="">All Vehicles/Machines</option>'+allRecips.map(r=>`<option value="${esc(r)}" ${cur===r?'selected':''}>${esc(r)}</option>`).join('');
   }
-
+ 
   let rows = S.entries
     .filter(e => e.staff === me?.u)
     .filter(e => f === 'today' ? e.date === today : true)
     .filter(e => fd ? e.date === fd : true)
     .filter(e => fv ? e.recip === fv : true)
     .sort((a,b) => b.ts - a.ts);
-
+ 
   const lbl = document.getElementById('eLabel');
   if(lbl) lbl.textContent = `${rows.length} entr${rows.length===1?'y':'ies'}`;
-
+ 
   const el = document.getElementById('eList');
   if(!rows.length){
     el.innerHTML=`<div class="empty-state"><div class="ei">${f==='today'?'⛽':'📋'}</div><div class="et">No entries found</div><div class="es">Try changing the filters</div></div>`;
     return;
   }
-
+ 
   const tableRows = rows.map(e => {
     const iv  = e.type === 'vehicle';
     const avg = calcAvg(e);
@@ -1304,7 +1315,7 @@ function renderStaffEntries(){
     const avgHtml = avg
       ? `<div class="str-avg"><span class="str-avg-val">${avg.value}</span><span class="str-avg-u">${avg.unit}</span></div>`
       : '<span style="color:var(--t4);font-size:11px">—</span>';
-
+ 
     return `<tr>
       <td class="str-time">${e.date}<br>${fmtTime(e.ts)}</td>
       <td>
@@ -1318,7 +1329,7 @@ function renderStaffEntries(){
       <td class="str-note">${e.notes ? '💬 '+esc(e.notes) : '<span style="color:var(--t4)">—</span>'}</td>
     </tr>`;
   }).join('');
-
+ 
   el.innerHTML = `<div class="staff-tbl-wrap">
     <table class="staff-tbl">
       <thead>
@@ -1336,7 +1347,7 @@ function renderStaffEntries(){
     </table>
   </div>`;
 }
-
+ 
 // ── Owner Log — Card Layout ──
 function renderLog(){
   const fd=document.getElementById('fDate').value;
@@ -1372,9 +1383,9 @@ function renderLog(){
         </div>
       </div>`;
     }
-
+ 
     let html='';
-
+ 
     // If entry was edited — show EXPIRED original first
     if(e.editedAt && e.editHistory?.length){
       const orig=e.editHistory[0].before;
@@ -1390,7 +1401,7 @@ function renderLog(){
         ${cardBodyHtml(orig, true)}
       </div>`;
     }
-
+ 
     // Current (latest) version
     const isEdited=!!e.editedAt;
     html+=`<div class="ocard">
@@ -1411,18 +1422,18 @@ function renderLog(){
         </div>
       </div>`:''}
     </div>`;
-
+ 
     return html;
   }).join('');
 }
-
+ 
 // ═══════════════════════════════════
 //  FORM LOGIC
 // ═══════════════════════════════════
 function setType(t){issueType=t;document.getElementById('ttV').classList.toggle('on',t==='vehicle');document.getElementById('ttM').classList.toggle('on',t==='machine');document.getElementById('secVeh').style.display=t==='vehicle'?'grid':'none';document.getElementById('secVehKm').style.display=t==='vehicle'?'block':'none';document.getElementById('secMac').style.display=t==='machine'?'block':'none';document.getElementById('recipLbl').textContent=t==='vehicle'?'Select Vehicle':'Select Machine';populateDrop();}
-
+ 
 function populateDrop(){const sel=document.getElementById('fRecipSelect');sel.innerHTML='';if(issueType==='vehicle'){sel.innerHTML='<option value="">— Select Vehicle —</option>';(S.vehicles||[]).forEach(v=>{const l=v.number?`${v.name} (${v.number})`:v.name;sel.innerHTML+=`<option value="${esc(l)}">${esc(l)}</option>`;});sel.innerHTML+='<option value="__c__">✏️ Type manually</option>';}else{sel.innerHTML='<option value="">— Select Machine —</option>';(S.machines||[]).forEach(m=>{const l=m.type?`${m.name} [${m.type}]`:m.name;sel.innerHTML+=`<option value="${esc(l)}">${esc(l)}</option>`;});sel.innerHTML+='<option value="__c__">✏️ Type manually</option>';}document.getElementById('fRecipCustom').style.display='none';document.getElementById('fRecipCustom').value='';showLastReading('');}
-
+ 
 function showLastReading(recip){
   // Show last KM/HMR reading for selected vehicle/machine as hint
   if(!recip || recip === '__c__') {
@@ -1441,18 +1452,18 @@ function showLastReading(recip){
     else{h.style.display='none';}
   }
 }
-
+ 
 function onRecipChange(){const v=document.getElementById('fRecipSelect').value;const ci=document.getElementById('fRecipCustom');if(v==='__c__'){ci.style.display='block';ci.placeholder=issueType==='vehicle'?'Vehicle name / number':'Machine name / ID';ci.focus();showLastReading('');}else{ci.style.display='none';ci.value='';if(issueType==='machine'&&v){const f=S.machines?.find(m=>{const l=m.type?`${m.name} [${m.type}]`:m.name;return l===v;});if(f?.type)document.getElementById('fMacType').value=f.type;}showLastReading(v);}}
-
+ 
 function getRecip(){const s=document.getElementById('fRecipSelect').value;return s==='__c__'?document.getElementById('fRecipCustom').value.trim():s;}
-
+ 
 function submitEntry(){
   const recip=getRecip();
   const qty=parseInt(document.getElementById('fQty').value);
   if(!recip){toast(issueType==='vehicle'?'Select a vehicle!':'Select a machine!','err');return;}
   if(!qty||qty<=0){toast('Enter valid quantity!','err');return;}
   if(qty>S.bowserNow){toast('Not enough diesel in bowser!','err');return;}
-
+ 
   let work={};
   if(issueType==='vehicle'){
     const from=document.getElementById('fFrom').value.trim();
@@ -1476,11 +1487,11 @@ function submitEntry(){
     if(prev?.hmrReading!=null && hmrVal<prev.hmrReading){toast('⚠️ HMR reading is less than last entry ('+prev.hmrReading+')!','err');return;}
     work={machineType:mt,machineWork:mw,hmrReading:hmrVal};
   }
-
+ 
   const now=Date.now();
   S.entries.push({id:'e'+now,ts:now,date:todayStr(),staff:me.u,type:issueType,recip,qty,notes:document.getElementById('fNotes').value.trim(),...work});
   S.bowserNow-=qty;
-
+ 
   document.getElementById('fRecipSelect').value='';
   document.getElementById('fRecipCustom').style.display='none';
   document.getElementById('fRecipCustom').value='';
@@ -1488,7 +1499,7 @@ function submitEntry(){
   document.getElementById('fMacType').value='';document.getElementById('fMacWork').value='';
   document.getElementById('lastKmHint').style.display='none';
   document.getElementById('lastHmrHint').style.display='none';
-
+ 
   renderBb();renderStaffEntries();
   document.querySelectorAll('.stab').forEach(b=>b.classList.remove('on'));
   document.querySelectorAll('.spane').forEach(p=>p.classList.remove('on'));
@@ -1496,7 +1507,7 @@ function submitEntry(){
   document.getElementById('spane-entries').classList.add('on');
   toast(`✅ Issued ${qty.toLocaleString('en-IN')}L to ${recip}`,'ok');
 }
-
+ 
 // ═══════════════════════════════════
 //  EDIT
 // ═══════════════════════════════════
@@ -1549,39 +1560,70 @@ function saveEdit(){
     if(hmr) e.hmrReading=parseFloat(hmr);
   }
   S.bowserNow-=diff;closeEdit();
-  sb.from('bdm_entries').update(rowEntry(e)).eq('id',id).then(({error})=>{if(error)console.error('Edit error:',error);});
-  syncSettings({bowser_now:S.bowserNow});
+  save();
   renderBb();renderStaffEntries();renderOwner();renderLog();toast('✅ Entry updated!','ok');
 }
-
+ 
 // ═══════════════════════════════════
 //  EXCEL
 // ═══════════════════════════════════
 function exportExcel(){if(!S.entries.length){toast('No entries!','err');return;}const wb=XLSX.utils.book_new();const summ=[['TASR BharatNext — Diesel Report'],['Generated:',new Date().toLocaleString('en-IN')],[''],['Capacity (L):',S.bowserCap],['Available (L):',S.bowserNow],['Issued (L):',S.entries.reduce((s,e)=>s+e.qty,0)],['Entries:',S.entries.length]];XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(summ),'Summary');const hdr=['Date','Time','Staff','Recipient','Type','Qty (L)','From','To','Machine','Work','KM Reading','HMR Reading','Average','Avg Unit','Notes','Edited By','Edit Time','Edit Reason'];const rows=S.entries.sort((a,b)=>a.ts-b.ts).map(e=>{const avg=calcAvg(e);return[e.date,fmtTime(e.ts),e.staff||'',e.recip,e.type,e.qty,e.from||'',e.to||'',e.machineType||'',e.machineWork||'',e.kmReading!=null?e.kmReading:'',e.hmrReading!=null?e.hmrReading:'',avg?avg.value:'',avg?avg.unit:'',e.notes||'',e.editedBy||'',e.editedAt?fmtDate(e.editedAt)+' '+fmtTime(e.editedAt):'',e.editHistory?.slice(-1)[0]?.reason||''];});const ws=XLSX.utils.aoa_to_sheet([hdr,...rows]);ws['!cols']=[12,8,12,18,10,10,18,18,12,16,12,12,10,8,20,12,14,20].map(w=>({wch:w}));XLSX.utils.book_append_sheet(wb,ws,'Diesel Log');XLSX.writeFile(wb,`TASR_Diesel_${todayStr()}.xlsx`);toast('✅ Excel exported!','ok');}
-
+ 
 // ═══════════════════════════════════
 //  SETTINGS
 // ═══════════════════════════════════
 function saveCap(){const v=parseInt(document.getElementById('sCap').value);if(!v||v<=0){toast('Enter valid capacity!','err');return;}S.bowserCap=v;S.bowserNow=Math.min(S.bowserNow,v);renderOwner();toast('✅ Capacity updated!','ok');}
 function changeOwnerPin(){const o=document.getElementById('sOldPin').value.trim(),n=document.getElementById('sNewPin').value.trim(),c=document.getElementById('sConPin').value.trim();const owner=S.users.find(x=>x.role==='owner');if(o!==owner.pin){toast('Current PIN wrong!','err');return;}if(!/^\d{4}$/.test(n)){toast('PIN must be 4 digits!','err');return;}if(n!==c){toast('PINs do not match!','err');return;}if(S.users.find(x=>x.pin===n&&x.role!=='owner')){toast('PIN already used by staff!','err');return;}owner.pin=n;['sOldPin','sNewPin','sConPin'].forEach(id=>document.getElementById(id).value='');toast('✅ PIN updated!','ok');}
 function addVehicle(){const name=document.getElementById('sVehName').value.trim(),num=document.getElementById('sVehNum').value.trim();if(!name){toast('Enter vehicle name!','err');return;}S.vehicles=S.vehicles||[];if(S.vehicles.find(v=>v.name.toLowerCase()===name.toLowerCase())){toast('Vehicle already exists!','err');return;}S.vehicles.push({id:'v'+Date.now(),name,number:num});document.getElementById('sVehName').value='';document.getElementById('sVehNum').value='';renderVehList();toast('✅ Vehicle added!','ok');}
-function removeVehicle(id){S.vehicles=S.vehicles.filter(v=>v.id!==id);sb.from('bdm_vehicles').delete().eq('id',id).then(({error})=>{if(error)console.error('Veh del:',error);});renderVehList();toast('Vehicle removed','ok');}
+function removeVehicle(id){S.vehicles=S.vehicles.filter(v=>v.id!==id);save();renderVehList();toast('Vehicle removed','ok');}
 function renderVehList(){const el=document.getElementById('vehList');if(!S.vehicles?.length){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--t3);font-size:13px;border:1.5px dashed var(--border);border-radius:9px">No vehicles added yet</div>';return;}el.innerHTML=S.vehicles.map(v=>`<div class="item-row"><div class="item-ico">🚛</div><div class="item-name">${esc(v.name)}</div>${v.number?`<span class="item-tag item-tag-v">${esc(v.number)}</span>`:''}<button class="item-del" onclick="removeVehicle('${v.id}')">Remove</button></div>`).join('');}
 function addMachine(){const name=document.getElementById('sMacName').value.trim(),type=document.getElementById('sMacType').value;if(!name){toast('Enter machine name!','err');return;}if(!type){toast('Select machine type!','err');return;}S.machines=S.machines||[];if(S.machines.find(m=>m.name.toLowerCase()===name.toLowerCase())){toast('Machine already exists!','err');return;}S.machines.push({id:'m'+Date.now(),name,type});document.getElementById('sMacName').value='';document.getElementById('sMacType').value='';renderMacList();toast('✅ Machine added!','ok');}
-function removeMachine(id){S.machines=S.machines.filter(m=>m.id!==id);sb.from('bdm_machines').delete().eq('id',id).then(({error})=>{if(error)console.error('Mac del:',error);});renderMacList();toast('Machine removed','ok');}
+function removeMachine(id){S.machines=S.machines.filter(m=>m.id!==id);save();renderMacList();toast('Machine removed','ok');}
 function renderMacList(){const el=document.getElementById('macList');if(!S.machines?.length){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--t3);font-size:13px;border:1.5px dashed var(--border);border-radius:9px">No machines added yet</div>';return;}el.innerHTML=S.machines.map(m=>`<div class="item-row"><div class="item-ico">🏗️</div><div class="item-name">${esc(m.name)}</div><span class="item-tag item-tag-m">${esc(m.type)}</span><button class="item-del" onclick="removeMachine('${m.id}')">Remove</button></div>`).join('');}
-function addStaff(){const name=document.getElementById('sStaffName').value.trim(),pin=document.getElementById('sStaffPin').value.trim();if(!name){toast('Enter staff name!','err');return;}if(!/^\d{4}$/.test(pin)){toast('PIN must be 4 digits!','err');return;}if(S.users.find(x=>x.pin===pin)){toast('PIN already taken!','err');return;}S.users.push({u:name,pin,role:'staff'});document.getElementById('sStaffName').value='';document.getElementById('sStaffPin').value='';renderStaffSettingsList();toast('✅ Staff added: '+name,'ok');}
-function removeStaff(pin){const u=S.users.find(x=>x.pin===pin);S.users=S.users.filter(x=>x.pin!==pin||x.role==='owner');if(u?.dbId)sb.from('bdm_users').delete().eq('id',u.dbId).then(({error})=>{if(error)console.error('Staff del:',error);});renderStaffSettingsList();toast('Staff removed','ok');}
+function addStaff(){
+  const name=document.getElementById('sStaffName').value.trim();
+  const pin=document.getElementById('sStaffPin').value.trim();
+  if(!name){toast('Enter staff name!','err');return;}
+  if(!/^\d{4}$/.test(pin)){toast('PIN must be 4 digits!','err');return;}
+  if(S.users.find(x=>x.pin===pin)){toast('PIN already taken!','err');return;}
+  const dbId='staff_'+Date.now();
+  S.users.push({u:name,pin,role:'staff',dbId});
+  save();
+  // Immediately push new staff to Supabase
+  if(navigator.onLine){
+    sb.from('bdm_users').insert({id:dbId,name,pin,role:'staff'})
+      .then(({error})=>{
+        if(error) console.error('Add staff error:',error);
+        else toast('✅ Staff added & synced: '+name,'ok');
+      });
+  } else {
+    toast('✅ Staff added (will sync when online)','ok');
+  }
+  document.getElementById('sStaffName').value='';
+  document.getElementById('sStaffPin').value='';
+  renderStaffSettingsList();
+}
+function removeStaff(pin){
+  const u=S.users.find(x=>x.pin===pin);
+  S.users=S.users.filter(x=>x.pin!==pin||x.role==='owner');
+  save();
+  if(u?.dbId && navigator.onLine){
+    sb.from('bdm_users').delete().eq('id',u.dbId)
+      .then(({error})=>{ if(error) console.error('Remove staff error:',error); });
+  }
+  renderStaffSettingsList();
+  toast('Staff removed','ok');
+}
 function renderStaffSettingsList(){const el=document.getElementById('staffList');const staff=S.users.filter(u=>u.role==='staff');if(!staff.length){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--t3);font-size:13px;border:1.5px dashed var(--border);border-radius:9px">No staff added yet</div>';return;}el.innerHTML=staff.map(u=>`<div class="item-row"><div class="item-ico">👷</div><div class="item-name">${esc(u.u)}</div><div class="pin-disp">••••<span style="font-size:10px;color:var(--t4);margin-left:6px;letter-spacing:0">(${u.pin})</span></div><button class="item-del" onclick="removeStaff('${u.pin}')">Remove</button></div>`).join('');}
 function loadSettings(){document.getElementById('sCap').value=S.bowserCap;renderVehList();renderMacList();renderStaffSettingsList();refreshLoginModeUI(S.loginMode||'calc');}
-
+ 
 // ═══════════════════════════════════
 //  REFILL
 // ═══════════════════════════════════
 function openRefill(){document.getElementById('refillModal').style.display='flex';document.getElementById('mRefillQty').value='';document.getElementById('mRefillNote').value='';}
 function closeRefill(){document.getElementById('refillModal').style.display='none';}
 function confirmRefill(){const qty=parseInt(document.getElementById('mRefillQty').value);if(!qty||qty<=0){toast('Enter valid quantity!','err');return;}S.bowserNow=Math.min(S.bowserCap,S.bowserNow+qty);S.refills.push({qty,note:document.getElementById('mRefillNote').value,date:todayStr(),by:me.u,ts:Date.now()});closeRefill();renderOwner();toast(`✅ Refilled +${qty.toLocaleString('en-IN')}L`,'ok');}
-
+ 
 // ═══════════════════════════════════
 //  HELPERS
 // ═══════════════════════════════════
@@ -1592,7 +1634,7 @@ function pctOf(){return Math.max(0,Math.min(100,S.bowserNow/S.bowserCap*100));}
 function wkSum(e){if(e.type==='vehicle')return`${e.from||''} → ${e.to||''}`;return`${e.machineType||''} · ${e.machineWork||''}`;}
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function toast(msg,type='ok'){const t=document.getElementById('toast');t.textContent=msg;t.className='show '+type;clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3000);}
-
+ 
 // ═══════════════════════════════════
 //  ADMIN PORTAL
 // ═══════════════════════════════════
@@ -1613,19 +1655,19 @@ function openAdminPortal(){
     ? staff.map(u=>`<div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border-radius:9px;padding:9px 12px"><span style="font-size:14px">👷</span><span style="font-size:13px;font-weight:600;color:#e5e7eb;flex:1">${esc(u.u)}</span><span style="font-family:var(--m);font-size:11px;color:#4b5563">PIN: ${u.pin}</span></div>`).join('')
     : '<div style="color:#4b5563;font-size:13px">No staff added yet</div>';
 }
-
+ 
 function closeAdmin(){
   document.getElementById('adminScreen').style.display='none';
 }
-
+ 
 function toggleAppStatus(){
   const enabled=document.getElementById('admToggle').checked;
   S.disabled=!enabled;
-  syncSettings({app_disabled:!enabled});
+  save();
   document.getElementById('admMsgCard').style.display=enabled?'none':'block';
   updateAdmStatusUI(enabled);
 }
-
+ 
 function updateAdmStatusUI(enabled){
   const icon=document.getElementById('admStatusIcon');
   const val=document.getElementById('admStatusVal');
@@ -1638,16 +1680,16 @@ function updateAdmStatusUI(enabled){
     desc.textContent='No one can login. Only admin (2027) works.';
   }
 }
-
+ 
 function saveAdminMsg(){
   const msg=document.getElementById('admMsg').value.trim();
   S.disableMsg=msg;
-  syncSettings({disable_msg:msg});
+  save();
   toast('✅ Message saved!','ok');
 }
-
+ 
 // ─── Staff Login Mode ───
-
+ 
 // ─── Accordion ───
 function toggleAcc(id){
   const body=document.getElementById(id);
@@ -1658,7 +1700,7 @@ function toggleAcc(id){
 }
 function setStaffLoginMode(mode){
   S.loginMode=mode;
-  syncSettings({login_mode:mode});
+  save();
   refreshLoginModeUI(mode);
   toast(mode==='pin' ? '✅ Staff will see PIN screen directly' : '✅ Calculator mode enabled','ok');
 }
@@ -1675,23 +1717,23 @@ function refreshLoginModeUI(mode){
   document.getElementById('pinModeTick').style.opacity = isPin ? '1' : '.3';
   document.getElementById('pinModeBtn').querySelector('div:nth-child(1)').style.background = isPin ? 'var(--G)' : 'var(--border2)';
 }
-
-(async()=>{await load();})();
-
+ 
+(async()=>{ await load(); })();
+ 
 // ═══════════════════════════════════
 //  PWA — SERVICE WORKER + INSTALL
 // ═══════════════════════════════════
 let deferredInstall = null;
-
-// Register service worker
-if('serviceWorker' in navigator){
-  window.addEventListener('load', ()=>{
+ 
+// Register service worker (only on real HTTPS deployments — silently skip in preview)
+if('serviceWorker' in navigator && location.protocol === 'https:' && !location.hostname.includes('claudeusercontent')){
+  try{
     navigator.serviceWorker.register('./sw.js')
       .then(reg => console.log('SW registered:', reg.scope))
-      .catch(err => console.log('SW error:', err));
-  });
+      .catch(() => {}); // silent fail
+  }catch(e){}
 }
-
+ 
 // Listen for install prompt (Android Chrome)
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
@@ -1703,7 +1745,7 @@ window.addEventListener('beforeinstallprompt', e => {
     }
   }, 3000);
 });
-
+ 
 // Install button clicked
 function installApp(){
   if(!deferredInstall) return;
@@ -1714,16 +1756,16 @@ function installApp(){
     deferredInstall = null;
   });
 }
-
+ 
 // Hide banner once installed
 window.addEventListener('appinstalled', () => {
   document.getElementById('installBanner').style.display = 'none';
   deferredInstall = null;
   toast('✅ App installed successfully!','ok');
 });
-
+ 
 </script>
-
+ 
 <!-- ══════ ADMIN PORTAL ══════ -->
 <div id="adminScreen">
   <div class="adm-hdr">
@@ -1736,7 +1778,7 @@ window.addEventListener('appinstalled', () => {
     <div class="adm-badge">ADMIN</div>
   </div>
   <div class="adm-body">
-
+ 
     <!-- App Status Toggle -->
     <div class="adm-status-card" id="admStatusCard">
       <div class="adm-status-icon" id="admStatusIcon">✅</div>
@@ -1750,14 +1792,14 @@ window.addEventListener('appinstalled', () => {
         <div class="adm-toggle-track"><div class="adm-toggle-thumb"></div></div>
       </label>
     </div>
-
+ 
     <!-- Disable Message -->
     <div class="adm-card" id="admMsgCard" style="display:none">
       <div class="adm-card-title">⚠️ Message shown to users</div>
       <input class="adm-input" id="admMsg" placeholder="e.g. App under maintenance. Contact admin." maxlength="120">
       <button onclick="saveAdminMsg()" style="margin-top:10px;width:100%;padding:11px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:10px;color:#fff;font-family:var(--f);font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.2px">Save Message</button>
     </div>
-
+ 
     <!-- Live Stats -->
     <div class="adm-card">
       <div class="adm-card-title">📊 Live Stats</div>
@@ -1776,16 +1818,16 @@ window.addEventListener('appinstalled', () => {
         </div>
       </div>
     </div>
-
+ 
     <!-- Staff List -->
     <div class="adm-card">
       <div class="adm-card-title">👷 Active Staff</div>
       <div id="admStaffList" style="display:flex;flex-direction:column;gap:7px;margin-top:4px"></div>
     </div>
-
+ 
   </div>
 </div>
-
+ 
 <!-- ══════ DISABLED OVERLAY ══════ -->
 <div id="disabledOverlay">
   <div class="dis-icon">🔒</div>
@@ -1795,3 +1837,5 @@ window.addEventListener('appinstalled', () => {
 </div>
 </body>
 </html>
+ 
+Artifact storage is temporarily unavailable. Please retry.
