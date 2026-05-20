@@ -449,11 +449,20 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 .acc-body{overflow:hidden;transition:all .25s ease}
  
 /* SYNC STATUS BADGE */
-#syncBadge{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.3px;transition:all .3s;border:1px solid transparent}
-#syncBadge.synced{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2)}
-#syncBadge.syncing{background:rgba(255,200,0,.2);color:#ffd700;border-color:rgba(255,200,0,.3);animation:syncPulse 1s ease-in-out infinite}
-#syncBadge.offline{background:rgba(220,38,38,.2);color:#fca5a5;border-color:rgba(220,38,38,.3)}
-@keyframes syncPulse{0%,100%{opacity:1}50%{opacity:.5}}
+#syncBadge{display:flex;align-items:center;gap:5px;padding:5px 11px;border-radius:99px;font-size:11px;font-weight:800;letter-spacing:.3px;transition:all .3s;border:1.5px solid transparent;white-space:nowrap}
+#syncBadge.synced{background:rgba(34,197,94,.2);color:#86efac;border-color:rgba(34,197,94,.4)}
+#syncBadge.syncing{background:rgba(255,200,0,.25);color:#fde047;border-color:rgba(255,200,0,.5);animation:syncPulse 1s ease-in-out infinite}
+#syncBadge.offline{background:rgba(220,38,38,.25);color:#fca5a5;border-color:rgba(220,38,38,.5);animation:offlinePulse 2s ease-in-out infinite}
+#syncBadge.flash{animation:syncFlash .8s ease}
+@keyframes syncPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.95)}}
+@keyframes offlinePulse{0%,100%{opacity:1}50%{opacity:.7}}
+@keyframes syncFlash{0%{transform:scale(1)}30%{transform:scale(1.15);background:rgba(34,197,94,.4)}100%{transform:scale(1)}}
+/* INLINE SYNC FEEDBACK */
+.sync-feedback{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;font-size:12px;font-weight:700;margin-left:8px;transition:.3s;opacity:0;transform:translateY(-4px);pointer-events:none}
+.sync-feedback.show{opacity:1;transform:translateY(0)}
+.sync-feedback.success{background:#dcfce7;color:#15803d}
+.sync-feedback.saving{background:#fef3c7;color:#a16207}
+.sync-feedback.offline{background:#fee2e2;color:#b91c1c}
 </style>
 </head>
 <body>
@@ -1118,11 +1127,19 @@ document.addEventListener('keydown',e=>{
 });
  
  
-function updateSyncBadge(){
+function updateSyncBadge(flash){
   const b=document.getElementById('syncBadge');if(!b)return;
-  if(!navigator.onLine){b.className='synced offline';b.textContent='🔴 Offline';}
-  else if(localStorage.getItem('bdm_dirty')){b.className='synced syncing';b.textContent='🟡 Syncing...';}
-  else{b.className='synced';b.textContent='🟢 Synced';}
+  if(!navigator.onLine){
+    b.className='synced offline';
+    b.textContent='📴 Offline';
+  } else if(localStorage.getItem('bdm_dirty')){
+    b.className='synced syncing';
+    b.textContent='🔄 Syncing...';
+  } else {
+    b.className='synced';
+    b.textContent='✅ Live';
+    if(flash){ b.classList.add('flash'); setTimeout(()=>b.classList.remove('flash'),800); }
+  }
 }
  
 function save(){
@@ -1142,12 +1159,17 @@ async function bgSync(){
     if(S.entries.length){const chs=[];for(let i=0;i<S.entries.length;i+=50)chs.push(S.entries.slice(i,i+50));for(const ch of chs)await sb.from('bdm_entries').upsert(ch.map(rowEntry));}
     if(S.vehicles.length)await sb.from('bdm_vehicles').upsert(S.vehicles.map(v=>({id:v.id,name:v.name,number:v.number||null})));
     if(S.machines.length)await sb.from('bdm_machines').upsert(S.machines.map(m=>({id:m.id,name:m.name,type:m.type})));
-    // Sync all users
-    const allUsers=S.users.map(u=>({
-      id:u.dbId||(u.role==='owner'?'owner':u.u.toLowerCase().replace(/[^a-z0-9]/g,'_')+'_'+u.pin),
-      name:u.u, pin:u.pin, role:u.role
-    }));
-    if(allUsers.length) await sb.from('bdm_users').upsert(allUsers);
+    // Sync users — give each one a stable id if missing
+    S.users.forEach(u => {
+      if(!u.dbId){
+        u.dbId = u.role==='owner' ? 'owner' : 'staff_'+u.pin+'_'+Date.now();
+      }
+    });
+    const allUsers=S.users.map(u=>({id:u.dbId, name:u.u, pin:u.pin, role:u.role}));
+    if(allUsers.length){
+      const {error:uErr}=await sb.from('bdm_users').upsert(allUsers);
+      if(uErr) console.error('Users sync error:',uErr);
+    }
     localStorage.removeItem('bdm_dirty');
     if(b){b.className='synced';b.textContent='🟢 Synced';}
   }catch(e){console.error('Sync:',e);if(b){b.className='synced offline';b.textContent='🔴 Sync failed';}}
@@ -1174,12 +1196,26 @@ async function fetchFromSupabase(){
       S.disableMsg=cfg.disable_msg||'';
     }
  
-    // Users — MERGE: keep local users not in Supabase (newly added offline)
+    // Users — robust merge: update dbIds + add any missing users (from either side)
     if(!e2 && users){
-      const sbPins=new Set(users.map(u=>u.pin));
-      const sbUsers=users.map(u=>({u:u.name,pin:u.pin,role:u.role,dbId:u.id}));
-      const localOnly=S.users.filter(u=>!sbPins.has(u.pin)); // offline-added users
-      S.users=[...sbUsers,...localOnly];
+      const sbUsersByPin = new Map(users.map(u => [u.pin, u]));
+      // 1) For existing local users: update their data from Supabase (especially dbId)
+      S.users.forEach(localU => {
+        const sbU = sbUsersByPin.get(localU.pin);
+        if(sbU){
+          localU.dbId = sbU.id;
+          localU.u = sbU.name;
+          localU.role = sbU.role;
+        }
+      });
+      // 2) Add Supabase users not in local
+      const localPins = new Set(S.users.map(u => u.pin));
+      users.forEach(sbU => {
+        if(!localPins.has(sbU.pin)){
+          S.users.push({u:sbU.name, pin:sbU.pin, role:sbU.role, dbId:sbU.id});
+        }
+      });
+      // 3) Local-only users (without dbId or not yet in Supabase) are PRESERVED (no removal!)
     }
  
     // Vehicles — replace only if Supabase returned valid data
@@ -1391,11 +1427,14 @@ function renderStaffEntries(){
     const avgHtml = avg
       ? `<div class="str-avg"><span class="str-avg-val">${avg.value}</span><span class="str-avg-u">${avg.unit}</span></div>`
       : '<span style="color:var(--t4);font-size:11px">—</span>';
+    const editedBadge = e.editedAt
+      ? `<span class="tag tag-edited" style="margin-left:5px;background:#fef3c7;color:#a16207;border:1px solid #fde68a;padding:1px 6px;border-radius:99px;font-size:8px;font-weight:800;letter-spacing:.3px">✏️ EDITED</span>`
+      : '';
  
     return `<tr>
       <td class="str-time">${e.date}<br>${fmtTime(e.ts)}</td>
       <td>
-        <div class="str-name">${esc(e.recip)}</div>
+        <div class="str-name">${esc(e.recip)}${editedBadge}</div>
         <span class="str-type ${iv?'str-tv':'str-tm'}">${iv?'🚛 Vehicle':'🏗️ Machine'}</span>
       </td>
       <td class="str-qty">${e.qty.toLocaleString('en-IN')}<span style="font-size:10px;color:var(--t4);margin-left:2px">L</span></td>
@@ -1403,6 +1442,7 @@ function renderStaffEntries(){
       <td class="str-km">${readingTxt}</td>
       <td>${avgHtml}</td>
       <td class="str-note">${e.notes ? '💬 '+esc(e.notes) : '<span style="color:var(--t4)">—</span>'}</td>
+      <td><button onclick="openEdit('${e.id}')" style="background:linear-gradient(135deg,#5f259f,#8b5cf6);border:none;border-radius:8px;padding:5px 11px;color:#fff;font-family:var(--f);font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;box-shadow:0 2px 6px rgba(95,37,159,.3)">✏️ Edit</button></td>
     </tr>`;
   }).join('');
  
@@ -1417,6 +1457,7 @@ function renderStaffEntries(){
           <th>KM / HMR</th>
           <th>Average</th>
           <th>Notes</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>${tableRows}</tbody>
@@ -1565,8 +1606,12 @@ function submitEntry(){
   }
  
   const now=Date.now();
-  S.entries.push({id:'e'+now,ts:now,date:todayStr(),staff:me.u,type:issueType,recip,qty,notes:document.getElementById('fNotes').value.trim(),...work});
+  const newEntry={id:'e'+now,ts:now,date:todayStr(),staff:me.u,type:issueType,recip,qty,notes:document.getElementById('fNotes').value.trim(),...work};
+  S.entries.push(newEntry);
   S.bowserNow-=qty;
+ 
+  // Save locally (immediate)
+  save();
  
   document.getElementById('fRecipSelect').value='';
   document.getElementById('fRecipCustom').style.display='none';
@@ -1581,7 +1626,31 @@ function submitEntry(){
   document.querySelectorAll('.spane').forEach(p=>p.classList.remove('on'));
   document.getElementById('stab-entries').classList.add('on');
   document.getElementById('spane-entries').classList.add('on');
-  toast(`✅ Issued ${qty.toLocaleString('en-IN')}L to ${recip}`,'ok');
+ 
+  // Show live sync feedback
+  if(navigator.onLine){
+    toast(`💾 Saving ${qty.toLocaleString('en-IN')}L to ${recip}...`,'ok');
+    // Sync entry directly + bowser level
+    Promise.all([
+      sb.from('bdm_entries').upsert([rowEntry(newEntry)]),
+      sb.from('bdm_settings').update({bowser_now:S.bowserNow}).eq('id','main')
+    ]).then(([r1,r2])=>{
+      if(r1.error||r2.error){
+        console.error('Sync error:',r1.error||r2.error);
+        toast(`⚠️ Saved locally — will sync soon`,'err');
+      } else {
+        toast(`✅ LIVE — ${qty.toLocaleString('en-IN')}L synced to cloud`,'ok');
+        localStorage.removeItem('bdm_dirty');
+        updateSyncBadge(true);
+      }
+    }).catch(err=>{
+      console.error('Submit sync error:',err);
+      toast(`⚠️ Saved locally — will sync soon`,'err');
+    });
+  } else {
+    toast(`📴 Offline — saved ${qty.toLocaleString('en-IN')}L locally`,'err');
+    updateSyncBadge();
+  }
 }
  
 // ═══════════════════════════════════
@@ -1637,7 +1706,31 @@ function saveEdit(){
   }
   S.bowserNow-=diff;closeEdit();
   save();
-  renderBb();renderStaffEntries();renderOwner();renderLog();toast('✅ Entry updated!','ok');
+  renderBb();renderStaffEntries();renderOwner();renderLog();
+ 
+  // Live Supabase sync with feedback
+  if(navigator.onLine){
+    toast('💾 Saving edit...','ok');
+    Promise.all([
+      sb.from('bdm_entries').upsert([rowEntry(e)]),
+      sb.from('bdm_settings').update({bowser_now:S.bowserNow}).eq('id','main')
+    ]).then(([r1,r2])=>{
+      if(r1.error||r2.error){
+        console.error('Edit sync error:',r1.error||r2.error);
+        toast('⚠️ Edit saved locally — will sync soon','err');
+      } else {
+        toast('✅ LIVE — Edit synced to cloud','ok');
+        localStorage.removeItem('bdm_dirty');
+        updateSyncBadge(true);
+      }
+    }).catch(err=>{
+      console.error('Edit sync exception:',err);
+      toast('⚠️ Edit saved locally — will sync soon','err');
+    });
+  } else {
+    toast('📴 Offline — edit saved locally','err');
+    updateSyncBadge();
+  }
 }
  
 // ═══════════════════════════════════
@@ -1656,38 +1749,59 @@ function renderVehList(){const el=document.getElementById('vehList');if(!S.vehic
 function addMachine(){const name=document.getElementById('sMacName').value.trim(),type=document.getElementById('sMacType').value;if(!name){toast('Enter machine name!','err');return;}if(!type){toast('Select machine type!','err');return;}S.machines=S.machines||[];if(S.machines.find(m=>m.name.toLowerCase()===name.toLowerCase())){toast('Machine already exists!','err');return;}S.machines.push({id:'m'+Date.now(),name,type});document.getElementById('sMacName').value='';document.getElementById('sMacType').value='';renderMacList();toast('✅ Machine added!','ok');}
 function removeMachine(id){S.machines=S.machines.filter(m=>m.id!==id);save();renderMacList();toast('Machine removed','ok');}
 function renderMacList(){const el=document.getElementById('macList');if(!S.machines?.length){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--t3);font-size:13px;border:1.5px dashed var(--border);border-radius:9px">No machines added yet</div>';return;}el.innerHTML=S.machines.map(m=>`<div class="item-row"><div class="item-ico">🏗️</div><div class="item-name">${esc(m.name)}</div><span class="item-tag item-tag-m">${esc(m.type)}</span><button class="item-del" onclick="removeMachine('${m.id}')">Remove</button></div>`).join('');}
-function addStaff(){
+async function addStaff(){
   const name=document.getElementById('sStaffName').value.trim();
   const pin=document.getElementById('sStaffPin').value.trim();
   if(!name){toast('Enter staff name!','err');return;}
   if(!/^\d{4}$/.test(pin)){toast('PIN must be 4 digits!','err');return;}
   if(S.users.find(x=>x.pin===pin)){toast('PIN already taken!','err');return;}
-  const dbId='staff_'+Date.now();
-  S.users.push({u:name,pin,role:'staff',dbId});
-  save();
-  // Immediately push new staff to Supabase
-  if(navigator.onLine){
-    sb.from('bdm_users').insert({id:dbId,name,pin,role:'staff'})
-      .then(({error})=>{
-        if(error) console.error('Add staff error:',error);
-        else toast('✅ Staff added & synced: '+name,'ok');
-      });
-  } else {
-    toast('✅ Staff added (will sync when online)','ok');
-  }
+  // Unique ID with random suffix to prevent collisions
+  const dbId='staff_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);
+  const newUser={u:name,pin,role:'staff',dbId};
+  S.users.push(newUser);
+  // Save locally first (always succeeds)
+  try{localStorage.setItem('bdm_v3',JSON.stringify(S));}catch(e){}
   document.getElementById('sStaffName').value='';
   document.getElementById('sStaffPin').value='';
   renderStaffSettingsList();
-}
-function removeStaff(pin){
-  const u=S.users.find(x=>x.pin===pin);
-  S.users=S.users.filter(x=>x.pin!==pin||x.role==='owner');
-  save();
-  if(u?.dbId && navigator.onLine){
-    sb.from('bdm_users').delete().eq('id',u.dbId)
-      .then(({error})=>{ if(error) console.error('Remove staff error:',error); });
+  // Push to Supabase
+  if(navigator.onLine){
+    try{
+      const {error}=await sb.from('bdm_users').upsert({id:dbId,name,pin,role:'staff'});
+      if(error){
+        console.error('Add staff error:',error);
+        toast('⚠️ Staff added locally — will sync soon','err');
+        localStorage.setItem('bdm_dirty','1');
+      } else {
+        toast('✅ Staff added & synced: '+name,'ok');
+        localStorage.removeItem('bdm_dirty');
+      }
+    }catch(err){
+      console.error('Add staff exception:',err);
+      toast('⚠️ Staff added locally — will sync soon','err');
+      localStorage.setItem('bdm_dirty','1');
+    }
+  } else {
+    toast('✅ Staff added (will sync when online)','ok');
+    localStorage.setItem('bdm_dirty','1');
   }
+  updateSyncBadge();
+}
+async function removeStaff(pin){
+  const u=S.users.find(x=>x.pin===pin);
+  if(!u || u.role==='owner') return;
+  S.users=S.users.filter(x=>x.pin!==pin);
+  try{localStorage.setItem('bdm_v3',JSON.stringify(S));}catch(e){}
   renderStaffSettingsList();
+  if(navigator.onLine && u.dbId){
+    try{
+      const {error}=await sb.from('bdm_users').delete().eq('id',u.dbId);
+      if(error) console.error('Remove staff error:',error);
+    }catch(err){console.error('Remove staff exception:',err);}
+  } else {
+    localStorage.setItem('bdm_dirty','1');
+  }
+  updateSyncBadge();
   toast('Staff removed','ok');
 }
 function renderStaffSettingsList(){const el=document.getElementById('staffList');const staff=S.users.filter(u=>u.role==='staff');if(!staff.length){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--t3);font-size:13px;border:1.5px dashed var(--border);border-radius:9px">No staff added yet</div>';return;}el.innerHTML=staff.map(u=>`<div class="item-row"><div class="item-ico">👷</div><div class="item-name">${esc(u.u)}</div><div class="pin-disp">••••<span style="font-size:10px;color:var(--t4);margin-left:6px;letter-spacing:0">(${u.pin})</span></div><button class="item-del" onclick="removeStaff('${u.pin}')">Remove</button></div>`).join('');}
@@ -1871,3 +1985,5 @@ function refreshLoginModeUI(mode){
 </div>
 </body>
 </html>
+ 
+Artifact storage is temporarily unavailable. Please retry.
