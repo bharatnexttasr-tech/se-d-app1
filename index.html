@@ -1037,8 +1037,8 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
 // ═══════════════════════════════════
 //  SUPABASE — OFFLINE-FIRST
 // ═══════════════════════════════════
-const SB_URL='https://iosamndhsaxusrevehad.supabase.co';
-const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlvc2FtbmRoc2F4dXNyZXZlaGFkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNzE2MjYsImV4cCI6MjA5NDc0NzYyNn0.qtGd_laCpV5XO1KiRhJ67Dj4fTcMBkAGI8WTOVxzrhU';
+const SB_URL='https://juetgazcjypzsipmojuq.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1ZXRnYXpjanlwenNpcG1vanVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyNjYzMTEsImV4cCI6MjA5NDg0MjMxMX0.DzlPTPj916T1q1hkz-enhhw4k5JmJRRk2mfwAq0u6JQ';
 const sb=supabase.createClient(SB_URL,SB_KEY);
 function mapEntry(r){return{id:r.id,ts:r.ts,date:r.date,staff:r.staff,type:r.type,recip:r.recip,qty:r.qty,from:r.from_loc,to:r.to_loc,machineType:r.machine_type,machineWork:r.machine_work,kmReading:r.km_reading,hmrReading:r.hmr_reading,notes:r.notes,editedAt:r.edited_at,editedBy:r.edited_by,editHistory:r.edit_history||[]};}
 function rowEntry(e){return{id:e.id,ts:e.ts,date:e.date,staff:e.staff,type:e.type,recip:e.recip,qty:e.qty,from_loc:e.from||null,to_loc:e.to||null,machine_type:e.machineType||null,machine_work:e.machineWork||null,km_reading:e.kmReading??null,hmr_reading:e.hmrReading??null,notes:e.notes||null,edited_at:e.editedAt||null,edited_by:e.editedBy||null,edit_reason:e.editHistory?.slice(-1)[0]?.reason||null,edit_history:e.editHistory||[]};}
@@ -1933,5 +1933,3 @@ window.addEventListener('appinstalled', () => {
 </div>
 </body>
 </html>
- 
-Artifact storage is temporarily unavailable. Please retry.
