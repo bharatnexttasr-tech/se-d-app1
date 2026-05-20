@@ -476,15 +476,6 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);min-height:100vh
   <button onclick="document.getElementById('installBanner').style.display='none'" style="background:none;border:none;color:rgba(255,255,255,.6);font-size:20px;cursor:pointer;padding:4px;line-height:1">✕</button>
 </div>
  
-<!-- LOADING OVERLAY -->
-<div id="loadingOverlay" style="position:fixed;inset:0;background:linear-gradient(160deg,#1a0533,#3b0764,#5f259f);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
-  <div style="font-size:56px">⛽</div>
-  <div style="font-size:18px;font-weight:800;color:#fff;letter-spacing:-.3px">TASR Diesel Manager</div>
-  <div style="font-size:13px;color:rgba(255,255,255,.6);font-weight:500">Connecting to database...</div>
-  <div style="width:48px;height:48px;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;margin-top:8px"></div>
-</div>
-<style>@keyframes spin{to{transform:rotate(360deg)}}</style>
- 
 <!-- ══════ CALCULATOR ══════ -->
 <div id="calcScreen">
   <div class="calc-display">
@@ -1246,12 +1237,28 @@ async function fetchFromSupabase(){
 window.addEventListener('online',async()=>{updateSyncBadge();toast('🌐 Back online — syncing...','ok');await fetchFromSupabase();});
 window.addEventListener('offline',()=>{updateSyncBadge();toast('📴 Offline — saving locally','err');});
  
-async function load(){
-  try{const d=localStorage.getItem('bdm_v3');if(d){const p=JSON.parse(d);S={...S,...p};}}catch(e){}
-  if(S.loginMode==='pin'){document.getElementById('calcScreen').style.display='none';openPin();const b=document.getElementById('pinBackBtn');if(b)b.style.display='none';}
-  document.getElementById('loadingOverlay').style.display='none';
+function load(){
+  // 1. INSTANT load from localStorage (works offline, no waiting)
+  try{
+    const d=localStorage.getItem('bdm_v3');
+    if(d){ const p=JSON.parse(d); S={...S,...p}; }
+  }catch(e){}
+ 
+  // 2. Apply login mode immediately
+  if(S.loginMode==='pin'){
+    document.getElementById('calcScreen').style.display='none';
+    openPin();
+    const b=document.getElementById('pinBackBtn');
+    if(b) b.style.display='none';
+  }
+ 
+  // 3. Update sync badge
   updateSyncBadge();
-  await fetchFromSupabase();
+ 
+  // 4. Sync from Supabase in BACKGROUND (don't block UI)
+  if(navigator.onLine){
+    setTimeout(()=>{ fetchFromSupabase().catch(e=>console.error('Sync:',e)); }, 100);
+  }
 }
  
  
