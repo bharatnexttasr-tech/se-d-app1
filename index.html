@@ -1245,6 +1245,28 @@ async function fetchFromSupabase(){
  
     // Refresh UI if logged in
     if(me){ if(me.role==='owner'){renderOwner();renderLog();}else{renderBb();renderStaffEntries();} }
+    
+    // Switch login screen if owner changed mode in settings (and user not logged in)
+    if(!me){
+      const calcVisible = document.getElementById('calcScreen').style.display !== 'none';
+      const pinVisible = document.getElementById('loginScreen').style.display === 'flex';
+      if(S.loginMode==='pin' && calcVisible){
+        // Switch from calc to PIN
+        document.getElementById('calcScreen').style.display='none';
+        document.getElementById('loginScreen').style.display='flex';
+      } else if(S.loginMode==='calc' && pinVisible){
+        // Switch from PIN to calc
+        document.getElementById('loginScreen').style.display='none';
+        document.getElementById('calcScreen').style.display='flex';
+      }
+      
+      // Show disabled message if owner disabled app remotely
+      if(S.disabled){
+        const msg = S.disableMsg || 'App is currently disabled by admin';
+        toast('🔒 ' + msg, 'err');
+      }
+    }
+    
     updateSyncBadge();
   }catch(e){
     console.error('Fetch error:',e);
@@ -1986,4 +2008,3 @@ function refreshLoginModeUI(mode){
 </body>
 </html>
  
-Artifact storage is temporarily unavailable. Please retry.
